@@ -16,7 +16,7 @@ namespace tests
 
         public override string ToString()
         {
-            return string.Format("[TaskModel: UID={0}, TaksName={1}, Completed={2}]", UID, TaksName, Completed);
+            return $"[TaskModel: UID={UID}, TaksName={TaksName}, Completed={Completed}]";
         }
 
         protected bool Equals(TaskModel other)
@@ -33,7 +33,7 @@ namespace tests
 
         public override int GetHashCode()
         {
-            return (UID != null ? UID.GetHashCode() : 0);
+            return UID?.GetHashCode() ?? 0;
         }
     }
 }

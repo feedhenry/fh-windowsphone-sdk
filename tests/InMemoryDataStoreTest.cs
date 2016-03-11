@@ -1,44 +1,35 @@
-﻿#if __MOBILE__
-using NUnit.Framework;
-using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestMethod = NUnit.Framework.TestAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
-#else
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-#endif
-
-using System.IO;
+﻿using System.IO;
 using FHSDK;
 using FHSDK.Services;
 using FHSDK.Services.Data;
 using FHSDK.Sync;
 using Newtonsoft.Json.Linq;
+using NUnit.Framework;
 
 namespace tests
 {
-    [TestClass]
+    [TestFixture]
     public class InMemoryDataStoreTest
     {
         private string _dataPersistFile;
         private IIOService _ioService;
 
-        [TestInitialize]
-        public void Setup()
+        [SetUp]
+        public async void Setup()
         {
-            FHClient.Init();
+            await FHClient.Init();
             _ioService = ServiceFinder.Resolve<IIOService>();
             var dataDir = _ioService.GetDataPersistDir();
             var dataPersistDir = Path.Combine(dataDir, "syncTestDir");
             _dataPersistFile = Path.Combine(dataPersistDir, ".test_data_file");
         }
 
-        [TestMethod]
+        [Test]
         public void TestInsertIntoDataStore()
         {
             //given
             IDataStore<JObject> dataStore = new InMemoryDataStore<JObject>();
-            var obj = new JObject();
-            obj["key"] = "value";
+            var obj = new JObject {["key"] = "value"};
 
             //when
             dataStore.Insert("key1", obj);
@@ -53,14 +44,13 @@ namespace tests
             Assert.AreEqual(obj, result);
         }
 
-        [TestMethod]
+        [Test]
         public void TestSaveDataStoreToJson()
         {
             //given
             IDataStore<JObject> dataStore = new InMemoryDataStore<JObject>();
             dataStore.PersistPath = _dataPersistFile;
-            var obj = new JObject();
-            obj["key"] = "value";
+            var obj = new JObject {["key"] = "value"};
 
             //when
             dataStore.Insert("main-key", obj);

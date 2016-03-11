@@ -1,22 +1,15 @@
-﻿#if __MOBILE__
-using NUnit.Framework;
-using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestMethod = NUnit.Framework.TestAttribute;
-#else
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-#endif
-
-using FHSDK;
+﻿using FHSDK;
 using FHSDK.Config;
 using Newtonsoft.Json.Linq;
+using NUnit.Framework;
 using tests.Mocks;
 
 namespace tests
 {
-    [TestClass]
+    [TestFixture]
     public class CloudPropsTest
     {
-        [TestMethod]
+        [Test]
         public void TestReadCloudPropsWithJsonContainingValues()
         {
             // given
@@ -36,25 +29,26 @@ namespace tests
             Assert.AreEqual("ENV", env);
         }
 
-        [TestMethod]
-        public void TestURLFormatting()
+        [Test]
+        public void TestReadCloudPropsWithJsonEmptyValuesForUrlAndHostWithoutUrl()
         {
             // given
             var json = JObject.Parse(@"{
-                'url': 'http://someserver.com/',
-                'hosts': {'host': 'HOST',  'environment': 'ENV'}
+                'hosts': {'host': 'HOST',  'environment': 'ENV', 'releaseCloudUrl': 'RELEASE_CLOUD_URL'}
              }");
             var config = new FHConfig(new MockDeviceService());
             var props = new CloudProps(json, config);
 
             // when
             var host = props.GetCloudHost();
+            var env = props.GetEnv();
 
             // then
-            Assert.AreEqual("http://someserver.com", host);
+            Assert.AreEqual("RELEASE_CLOUD_URL", host);
+            Assert.AreEqual("ENV", env);
         }
 
-        [TestMethod]
+        [Test]
         public void TestReadCloudPropsWithJsonEmptyValuesForUrlAndHostWithUrl()
         {
             // given
@@ -73,23 +67,22 @@ namespace tests
             Assert.AreEqual("ENV", env);
         }
 
-        [TestMethod]
-        public void TestReadCloudPropsWithJsonEmptyValuesForUrlAndHostWithoutUrl()
+        [Test]
+        public void TestURLFormatting()
         {
             // given
             var json = JObject.Parse(@"{
-                'hosts': {'host': 'HOST',  'environment': 'ENV', 'releaseCloudUrl': 'RELEASE_CLOUD_URL'}
+                'url': 'http://someserver.com/',
+                'hosts': {'host': 'HOST',  'environment': 'ENV'}
              }");
             var config = new FHConfig(new MockDeviceService());
             var props = new CloudProps(json, config);
 
             // when
             var host = props.GetCloudHost();
-            var env = props.GetEnv();
 
             // then
-            Assert.AreEqual("RELEASE_CLOUD_URL", host);
-            Assert.AreEqual("ENV", env);
+            Assert.AreEqual("http://someserver.com", host);
         }
     }
 }

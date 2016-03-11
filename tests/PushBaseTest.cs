@@ -1,25 +1,17 @@
 ﻿
 using System;
-using System.Collections.Generic;
-#if __MOBILE__
-using NUnit.Framework;
-using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestMethod = NUnit.Framework.TestAttribute;
-#else
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-#endif
-
 using System.Threading.Tasks;
 using FHSDK;
 using FHSDK.Services.Network;
+using NUnit.Framework;
 
 namespace tests
 {
-    [TestClass]
+    [TestFixture]
     public class PushBaseTest
     {
-        [TestMethod]
-        public async Task TestLoadingPushConfig()
+        [Test]
+        public async void TestLoadingPushConfig()
         {
             //given
             await FHClient.Init();
