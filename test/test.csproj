@@ -75,23 +75,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="..\tests\AuthRequestTest.cs">
-      <Link>AuthRequestTest.cs</Link>
-    </Compile>
     <Compile Include="..\tests\CloudPropsTest.cs">
       <Link>CloudPropsTest.cs</Link>
-    </Compile>
-    <Compile Include="..\tests\ConfigTest.cs">
-      <Link>ConfigTest.cs</Link>
-    </Compile>
-    <Compile Include="..\tests\HashTester.cs">
-      <Link>HashTester.cs</Link>
-    </Compile>
-    <Compile Include="..\tests\HttpClientTest.cs">
-      <Link>HttpClientTest.cs</Link>
-    </Compile>
-    <Compile Include="..\tests\InMemoryDataStoreTest.cs">
-      <Link>InMemoryDataStoreTest.cs</Link>
     </Compile>
     <Compile Include="..\tests\Mocks\MockDeviceService.cs">
       <Link>Mocks\MockDeviceService.cs</Link>
@@ -105,12 +90,6 @@
     <Compile Include="..\tests\Mocks\MockResponseDataset.cs">
       <Link>Mocks\MockResponseDataset.cs</Link>
     </Compile>
-    <Compile Include="..\tests\PushBaseTest.cs">
-      <Link>PushBaseTest.cs</Link>
-    </Compile>
-    <Compile Include="..\tests\SyncTest.cs">
-      <Link>SyncTest.cs</Link>
-    </Compile>
     <Compile Include="..\tests\TaskModel.cs">
       <Link>TaskModel.cs</Link>
     </Compile>
@@ -120,10 +99,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FHSDKPortable\FHSDKPortable.csproj">
-      <Project>{71dd40e5-ab2f-4102-aea6-bd1c33651a1a}</Project>
-      <Name>FHSDKPortable</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FHSDK\FHSDK.csproj">
       <Project>{ad87dbe9-8247-47cd-b6d2-16b63cbbc9e7}</Project>
       <Name>FHSDK</Name>
