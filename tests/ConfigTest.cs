@@ -1,23 +1,16 @@
-﻿#if __MOBILE__
-using NUnit.Framework;
-using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestMethod = NUnit.Framework.TestAttribute;
-#else
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-#endif
-using System.Threading.Tasks;
-using FHSDK;
+﻿using FHSDK;
 using FHSDK.Config;
 using FHSDK.Services;
 using FHSDK.Services.Device;
+using NUnit.Framework;
 using tests.Mocks;
 
 namespace tests
 {
-    [TestClass]
+    [TestFixture]
     public class ConfigTest
     {
-        [TestMethod]
+        [TestAttribute]
         public void TestReadConfigWithMockedDevice()
         {
             // given a mocked DeviceService
@@ -37,8 +30,8 @@ namespace tests
         }
 
 
-        [TestMethod]
-        public async Task TestReadConfig()
+        [TestAttribute]
+        public async void TestReadConfig()
         {
             // given
             await FHClient.Init();
@@ -54,8 +47,8 @@ namespace tests
             Assert.AreEqual("connection_tag_for_test", config.GetConnectionTag());
         }
 
-        [TestMethod]
-        public async Task TestReadPushConfig()
+        [TestAttribute]
+        public async void TestReadPushConfig()
         {
             // given
             await FHClient.Init();

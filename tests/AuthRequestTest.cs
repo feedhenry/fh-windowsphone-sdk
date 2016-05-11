@@ -1,35 +1,26 @@
-﻿#if __MOBILE__
-using NUnit.Framework;
-using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestMethod = NUnit.Framework.TestAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
-#else
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-#endif
-
-using System.Threading.Tasks;
-using FHSDK;
+﻿using FHSDK;
 using FHSDK.API;
 using FHSDK.Config;
 using FHSDK.FHHttpClient;
 using FHSDK.Services;
 using FHSDK.Services.Auth;
 using Newtonsoft.Json.Linq;
+using NUnit.Framework;
 using tests.Mocks;
 
 namespace tests
 {
-    [TestClass]
+    [TestFixture]
     public class AuthRequestTest
     {
-        [TestInitialize]
-        public async Task Init()
+        [SetUp]
+        public async void Init()
         {
             await FHClient.Init();
         }
 
-        [TestMethod]
-        public async Task ShouldOAuthRequest()
+        [Test]
+        public async void ShouldOAuthRequest()
         {
             //given
             ServiceFinder.RegisterType<IOAuthClientHandlerService, MockOAuthClient>();

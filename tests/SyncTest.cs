@@ -1,23 +1,15 @@
-﻿#if __MOBILE__
-using NUnit.Framework;
-using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestMethod = NUnit.Framework.TestAttribute;
-#else
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-#endif
-
-using System.Threading.Tasks;
-using FHSDK;
+﻿using FHSDK;
 using FHSDK.Sync;
+using NUnit.Framework;
 using tests.Mocks;
 
 namespace tests
 {
-    [TestClass]
+    [TestFixture]
     public class SyncTest
     {
-        [TestMethod]
-        public async Task ShouldCreatePendingTaskForCreate()
+        [Test]
+        public async void ShouldCreatePendingTaskForCreate()
         {
             //given
             await FHClient.Init();
@@ -41,8 +33,8 @@ namespace tests
             Assert.AreEqual(taskName, taskRead.TaksName);
         }
 
-        [TestMethod]
-        public async Task ShouldUploadPendingEdits()
+        [Test]
+        public async void ShouldUploadPendingEdits()
         {
             //given
             await FHClient.Init();
@@ -65,8 +57,8 @@ namespace tests
             Assert.AreEqual(0, dataset.GetPendingRecords().List().Count);
         }
 
-        [TestMethod]
-        public async Task ShouldCreateUpdate()
+        [Test]
+        public async void ShouldCreateUpdate()
         {
             //given
             await FHClient.Init();
@@ -97,8 +89,8 @@ namespace tests
             Assert.AreEqual(name, list[0].TaksName);
         }
 
-        [TestMethod]
-        public async Task ShouldAddRemoteCreatedRecord()
+        [Test]
+        public async void ShouldAddRemoteCreatedRecord()
         {
             //given
             await FHClient.Init();
@@ -120,8 +112,8 @@ namespace tests
             Assert.IsTrue(list.Contains(new TaskModel() { UID = "561b7cf1810880dc18000029" }));
         }
 
-        [TestMethod]
-        public async Task ShouldDeleteRecord()
+        [Test]
+        public async void ShouldDeleteRecord()
         {
             //given
             await FHClient.Init();
