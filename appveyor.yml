@@ -4,5 +4,4 @@ before_build:
 - nuget restore
 build:
   verbosity: normal
-  project: FHSDK.sln
 test: off
