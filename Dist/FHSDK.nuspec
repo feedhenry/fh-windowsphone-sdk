@@ -53,7 +53,8 @@
         <dependency id="Xamarin.Android.Support.v4" version="23.1.1" />
         <dependency id="Xamarin.GooglePlayServices.Gcm" version="29.0.0.2" />
         <dependency id="Newtonsoft.Json" version="8.0.3" />
-        <dependency id="Unity" version="4.0.1" />
+        <dependency id="Xamarin.Android.Support.v4" version="23.1.1" />
+        <dependency id="Xamarin.GooglePlayServices.Gcm" version="29.0.0.2" />        
        </group>
 
        <group targetFramework="monotouch">
