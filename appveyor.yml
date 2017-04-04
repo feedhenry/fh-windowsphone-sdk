@@ -10,5 +10,4 @@ xamarin:
   ios: true
 build:
   verbosity: normal
-  project: FHSDK.sln
 test: off
