@@ -13,6 +13,11 @@ namespace FHSDK
         private string _hostUrl;
         private readonly FHConfig _config;
 
+        // Optional modifier to help with doing reverse-proxy
+        public delegate string HostUrlModifier(string srcUrl);
+        // The default Host URL modifier is null. Clients may set it if required.
+        public static HostUrlModifier UrlModifier;
+
         /// <summary>
         ///     Constructor
         /// </summary>
@@ -64,6 +69,8 @@ namespace FHSDK
                 }
             }
             _hostUrl = _hostUrl.EndsWith("/") ? _hostUrl.Substring(0, _hostUrl.Length - 1) : _hostUrl;
+            if (UrlModifier != null)
+                _hostUrl = UrlModifier(_hostUrl);
             return _hostUrl;
         }
 
@@ -79,3 +86,4 @@ namespace FHSDK
         }
     }
 }
+

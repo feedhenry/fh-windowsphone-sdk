@@ -41,6 +41,16 @@ namespace FHSDK
         }
 
         /// <summary>
+        /// Gets the host env. Mainly introduced to support clients
+        /// when transforming URLs where environment name plays a key part.
+        /// </summary>
+        /// <returns>The host env, e.g. dev</returns>
+        public static string GetHostEnv()
+        {
+            return CloudProps.GetEnv();
+        }
+
+        /// <summary>
         ///     Get or Set the timeout value for all the requests. Default is 30 seconds.
         /// </summary>
         public static TimeSpan TimeOut
