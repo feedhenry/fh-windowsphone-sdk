@@ -69,7 +69,7 @@ else
 
 ### FH.Auth
 
-Call the FeedHenry Authentication API with the given policyId. This is normally used for OAuth type authentications. The user will be prompted for login details and the the login result will be returned. Can be used in PCL projects.
+Call the FeedHenry Authentication API with the given policyId. This is normally used for OAuth type authentications. The user will be prompted for login details and the login result will be returned. Can be used in PCL projects.
 
 ````cs
 string authPolicy = "TestGooglePolicy";
@@ -104,7 +104,7 @@ The complete FH .NET SDK contains four projects:
 
 * FHSDK
 
-  A PCL library contains core code. It is required by all the other three projects.  Most the the APIs are implemented here. It contains a few interface definitions which are implemented in each platform's project.  Another important function of this library is to automatically figure out the correct implementions for the inferfaces when running on devices (see code in [FHSDK/Adaptation](FHSDK/Adaptation)). The assembly file built by the project can be used by other PCL projects.
+  A PCL library contains core code. It is required by all the other three projects.  Most of the APIs are implemented here. It contains a few interface definitions which are implemented in each platform's project.  Another important function of this library is to automatically figure out the correct implementions for the inferfaces when running on devices (see code in [FHSDK/Adaptation](FHSDK/Adaptation)). The assembly file built by the project can be used by other PCL projects.
 
 * FHSDKPhone
 
